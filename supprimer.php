@@ -31,7 +31,8 @@ if (!$sql) {
 echo "Connected successfully";
   $persselect=" DELETE  FROM personnel WHERE Membre_ID=$id";
   if(mysqli_query($sql,$persselect)){
-    echo "deleted";
+    header("Location:  ./index.php");
+   
 }else
 echo"". mysqli_error($sql);
 } 

@@ -110,9 +110,9 @@ mysqli_close($sql);
 
 <body >
 <div class=" flex justify-evenly m-4">
-        <button id="buton1" class="bg-blue-500 border-2 rounded-md p-6">tableau des membres</button>
-        <button id="buton2" class="bg-blue-500 border-2 rounded-md p-6">tableau jointées</button>
-        <button id="buton3" class="bg-blue-500 border-2 rounded-md p-6">tableau des équipes</button>
+        <button id="buton1" class="bg-blue-500 border-2 rounded-md p-6">tableau des équipes</button>
+        <button id="buton2" class="bg-blue-500 border-2 rounded-md p-6">tableau des membres</button>
+        <button id="buton3" class="bg-blue-500 border-2 rounded-md p-6">tableau jointées</button>
          <button id="buton" class="bg-blue-500  border-2 rounded-md  p-6"><a href="ajouter.php">AJOUTER</a></button>
         </div>
     <div id="">
@@ -174,9 +174,11 @@ mysqli_close($sql);
             <?php endforeach; ?>
         </tbody>
     </table>
+
+
+
     <!-- TABLEAU JOINTées -->
     <div id="">
-
         <table id="table3" class="hidden">
 
             <thead>
@@ -204,12 +206,11 @@ mysqli_close($sql);
                 <?php foreach ($donnees3 as $ligne) : ?>
                     <tr>
                         <?php foreach ($ligne as $colonne) : ?>
-                            <td><?php echo $colonne; ?></td> 
-                            
+                            <td><?php echo $colonne; ?></td>
                        <?php endforeach; ?>
                        <td>
-                    <button class="bg-blue-500 border-2 rounded-md p-2">MODIFIER</button>
-                    <button class="bg-red-500 border-2 rounded-md p-2"><a href="supprimer.php?id=<?php echo $ligne['Membre_ID']; ?>">SUPPRIMER</a></button>
+                    <button  class="w-[110px] bg-blue-500 border-2 rounded-md p-2"><a href="update.php?id=<?php echo $ligne['Membre_ID']; ?>">MODIFIER</a></button>
+                    <button id="delete" class="w-[110px] bg-red-500 border-2 rounded-md p-2"><a href="supprimer.php?id=<?php echo $ligne['Membre_ID']; ?>">SUPPRIMER</a></button>
                 </td>
                     </tr>
        
@@ -219,11 +220,6 @@ mysqli_close($sql);
             </tbody>
         </table>
     </div>
-   
-    
-   
-
-   
     <script src="java.js"></script>
 </body>
 

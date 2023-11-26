@@ -14,7 +14,7 @@
 
 <h2  class=" inline bg-gray-200  text-center " >Formulaire d'ajout de Membre</h2>
     <label for=" nom">Nom:</label>
-    <input class="  border-black border-2 rounded" type="text" name="nom" required><br>
+    <input class="  border-black  border-2 rounded" type="text" name="nom" required><br>
 
     <label for="prenom">Prénom:</label>
     <input class=" border-black border-2 rounded"  type="text" name="prénom" required><br>
