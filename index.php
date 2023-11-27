@@ -5,10 +5,10 @@ $password = "zakaria12";
 $database = "mydata";
 
 // Connexion à la base de données
-$sql = mysqli_connect($servername, $username, $password, $database);
+$conn = mysqli_connect($servername, $username, $password, $database);
 
 // Vérifier la connexion
-if (!$sql) {
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
@@ -16,7 +16,7 @@ echo "Connected successfully";
 
 // Requête pour récupérer les données de la table EQUIPE
 $requete1 = "SELECT * FROM EQUIPE";
-$resultat1 = mysqli_query($sql, $requete1);
+$resultat1 = mysqli_query($conn, $requete1);
 
 // Vérifier si la requête a réussi
 if ($resultat1) {
@@ -32,38 +32,37 @@ if ($resultat1) {
     mysqli_free_result($resultat1);
 } else {
     // Gérer les erreurs si la requête a échoué
-    echo "Erreur dans la requête : " . mysqli_error($sql);
+    echo "Erreur dans la requête : " . mysqli_error($conn);
 }
 /**************************TABLEAU DES MEMBRES******************************* */
-// Requête pour récupérer les données de la table PERSONNEL
-$requete2 = "SELECT * FROM PERSONNEL";
-$resultat2 = mysqli_query($sql, $requete2);
 
-// Vérifier si la requête a réussi
+$requete2 = "SELECT * FROM PERSONNEL";
+$resultat2 = mysqli_query($conn, $requete2);
+
+
 if ($resultat2) {
-    // Initialiser le tableau $donnees2
+   
     $donnees2 = array();
 
-    // Récupérer les lignes de résultat et les stocker dans le tableau $donnees2
     while ($row = mysqli_fetch_assoc($resultat2)) {
         $donnees2[] = $row;
     }
 
-    // Libérer le résultat de la mémoire
+    
     mysqli_free_result($resultat2);
 } else {
-    // Gérer les erreurs si la requête a échoué
-    echo "Erreur dans la requête : " . mysqli_error($sql);
+   
+    echo "Erreur dans la requête : " . mysqli_error($conn);
 }
 
-// Fermer la connexion à la base de données
+
 
 /*************/
 /**************************TABLEAU jointées******************************* */
 $jointables = "SELECT personnel.Membre_ID ,personnel.nom, personnel.prénom,personnel.email,personnel.téléphone, personnel.rôle,personnel.équipe_ID,personnel.statut,EQUIPE.Nom_Équipe ,EQUIPE.Date_de_Création
 FROM PERSONNEL
 JOIN EQUIPE ON personnel.équipe_ID = EQUIPE.équipe_ID;";
-$resultat3 = mysqli_query($sql, $jointables);
+$resultat3 = mysqli_query($conn, $jointables);
 if ($resultat3) {
     $donnees3 = array();
     while ($row = mysqli_fetch_assoc($resultat3)) {
@@ -71,11 +70,11 @@ if ($resultat3) {
     }
     mysqli_free_result($resultat3);
 } else {
-    echo "Erreur dans la requete :" . mysqli_error($sql);
+    echo "Erreur dans la requete :" . mysqli_error($conn);
 }
 
 /*************************************************/
-mysqli_close($sql);
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -179,7 +178,7 @@ mysqli_close($sql);
 
     <!-- TABLEAU JOINTées -->
     <div id="">
-        <table id="table3" class="hidden">
+        <table id="table3" class="">
 
             <thead>
                 <tr>
